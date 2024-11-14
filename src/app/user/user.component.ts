@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, computed, EventEmitter, Input, input, Output } from '@angular/core';
 //import { DUMMY_USERS } from '../dummy-users';
 
 //const randomIndex=Math.floor(Math.random()*DUMMY_USERS.length)
@@ -15,17 +15,29 @@ export class UserComponent {
 
   /*
   enfoque decorador para gestionar estados, para este caso es importante importar Input de @angular
-  @Input() avatar!: string; // haremos referencia a esta propiedad desde la plantilla app.componet para acceder a la imagen de los usuarios
-  @Input() name!: string; //para acceder al campo nombre 
-  */
+   */
+  @Input({required:true}) id!:string;
+  @Input({required:true}) avatar!: string; // haremos referencia a esta propiedad desde la plantilla app.componet para acceder a la imagen de los usuarios
+  @Input({required:true}) name!: string; //para acceder al campo nombre 
+  @Output() select=new EventEmitter();
+ 
   
-//  enfoque en señales para gestionar entradas, para esto importamos funcion input de @angular 
+/* enfoque en señales para gestionar entradas, para esto importamos funcion input de @angular 
   avatar=input.required<string>();
   name=input.required<string>();
   //creacion de un metodo geter 
+
+imagenPath=computed(()=>{
+  return 'imagenes/users/'+ this.avatar();
+})
+*/
+
+  /*
+  metodo get para obtener la imagen usando decoradores */
   get imagenPath(){
     return 'imagenes/users/'+ this.avatar;
   }
+    
   /* selecteduser=DUMMY_USERS[randomIndex]
    
   
@@ -40,4 +52,8 @@ export class UserComponent {
     this.selecteduser=DUMMY_USERS[randomIndex1]
     
   }*/
+
+    onSelectUser(){
+    this.select.emit(this.id);
+  }
 }

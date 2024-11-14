@@ -14,4 +14,8 @@ import { DUMMY_USERS } from './dummy-users';//se realiza importaciòn de la list
 export class AppComponent {
   users= DUMMY_USERS;//añadimos la propiedad users para pode utilzarla en la plantilla
   //title = 'primera-app-angular';
+
+  onSelectUser(id: string){
+    console.log('Se ha seleccionado el usuario con el id' + id);
+  }
 }
