@@ -1,5 +1,5 @@
 //importamos el decorador de componentes  desde el paquete core de angular
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
 
 @Component({
@@ -10,4 +10,6 @@ import { Component } from '@angular/core';
   })
 
 
-export class HeaderComponent{}
+export class HeaderComponent{
+  
+}

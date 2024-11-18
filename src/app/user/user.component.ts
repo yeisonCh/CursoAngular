@@ -3,6 +3,18 @@ import { Component, computed, EventEmitter, Input, input, Output } from '@angula
 
 //const randomIndex=Math.floor(Math.random()*DUMMY_USERS.length)
 
+/* creando un objeto de tipo usuario al cual le asignamos el mombre usuario
+type User={
+  id:string;
+  avatar:string;
+  name:string;
+}
+*/
+interface User{
+  id:string;
+  avatar:string;
+  name:string;
+}
 @Component({
   selector: 'app-user',
   standalone: true,
@@ -15,10 +27,14 @@ export class UserComponent {
 
   /*
   enfoque decorador para gestionar estados, para este caso es importante importar Input de @angular
-   */
+   
   @Input({required:true}) id!:string;
   @Input({required:true}) avatar!: string; // haremos referencia a esta propiedad desde la plantilla app.componet para acceder a la imagen de los usuarios
   @Input({required:true}) name!: string; //para acceder al campo nombre 
+*/
+//vamos a utilizar el objeto creado User
+
+@Input({required: true})user!: User;
   @Output() select=new EventEmitter();
  
   
@@ -35,7 +51,7 @@ imagenPath=computed(()=>{
   /*
   metodo get para obtener la imagen usando decoradores */
   get imagenPath(){
-    return 'imagenes/users/'+ this.avatar;
+    return 'imagenes/users/'+ this.user.avatar;
   }
     
   /* selecteduser=DUMMY_USERS[randomIndex]
@@ -54,6 +70,6 @@ imagenPath=computed(()=>{
   }*/
 
     onSelectUser(){
-    this.select.emit(this.id);
+    this.select.emit(this.user.id);
   }
 }
