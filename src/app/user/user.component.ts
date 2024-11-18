@@ -35,7 +35,7 @@ export class UserComponent {
 //vamos a utilizar el objeto creado User
 
 @Input({required: true})user!: User;
-  @Output() select=new EventEmitter();
+@Output() select=new EventEmitter();
  
   
 /* enfoque en señales para gestionar entradas, para esto importamos funcion input de @angular 
