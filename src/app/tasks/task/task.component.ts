@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 
 
 interface Task{
@@ -19,5 +19,13 @@ interface Task{
 })
 export class TaskComponent {
   @Input({required:true}) task!: Task;
+  //decorador de salida @Output nos sirve para enviar informaciòn a otros componentes.
+  @Output()complete = new EventEmitter<string>();
+
+
+  onCompleteTask(){
+    this.complete.emit(this.task.id);
+  }
+
 
 }

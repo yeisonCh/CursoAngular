@@ -33,6 +33,6 @@ export class AppComponent {
   }
   onSelectUser(id: string){
     this.selectedUserId=id; 
-    console.log('Se ha seleccionado el usuario con el id' + id);
+    //console.log('Se ha seleccionado el usuario con el id' + id);
   }
 }
