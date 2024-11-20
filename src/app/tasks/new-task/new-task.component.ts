@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NewTaskData } from '../task/task.model';
+import {type NewTaskData } from '../task/task.model';
 
 @Component({
   selector: 'app-new-task',
@@ -10,8 +10,8 @@ import { NewTaskData } from '../task/task.model';
   styleUrl: './new-task.component.less'
 })
 export class NewTaskComponent {
-  @Output() cancel = new EventEmitter<void>()
-  @Output() add = new EventEmitter<NewTaskData>()
+  @Output() cancel = new EventEmitter<void>();
+  @Output() add = new EventEmitter<NewTaskData>();
   enteredTitle= ''; //signal(''); para trabajar con señales pero es importante tener en cuenta que se deba imnportar signal de @angular/core
   entradaDescrip='';
   entradaFecha=''; 
@@ -23,7 +23,7 @@ export class NewTaskComponent {
     this.add.emit({
       title: this.enteredTitle,
       summary: this.entradaDescrip,
-      date: this.entradaFecha
+      date: this.entradaFecha,
     })
   }
 }

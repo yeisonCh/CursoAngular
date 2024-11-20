@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { TaskComponent } from "./task/task.component";
 import { NewTaskComponent } from './new-task/new-task.component';
+import {type NewTaskData } from './task/task.model';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tasks',
@@ -49,22 +51,30 @@ export class TasksComponent {
     },
   ];
 
-get selectedUserTask(){
-  return this.tasks.filter((task) => task.userId === this.UserId);
- 
-}
+  get selectedUserTask(){
+    return this.tasks.filter((task) => task.userId === this.UserId);
+  
+  }
 
-onCompleteTask(id: string){
-  this.tasks=this.tasks.filter((task)=>task.id!==id);
-  //console.log("haz hecho click al boton finalizar tarea numero: "+ id);
-}
-onStarAddTask(){
-  this.isAddingTask=true;
-}
-onCancelAddTask(){
-  this.isAddingTask=false;
-}
+  onCompleteTask(id: string){
+    this.tasks=this.tasks.filter((task)=>task.id!==id);
+    //console.log("haz hecho click al boton finalizar tarea numero: "+ id);
+  }
+  onStarAddTask(){
+    this.isAddingTask=true;
+  }
+  onCancelAddTask(){
+    this.isAddingTask=false;
+  }
 
-onAddtask(taskData: {}){}
-
-}
+  onAddtask(taskData: NewTaskData){
+    this.tasks.push({
+      id: new Date().getTime.toString(),
+      userId: this.UserId,
+      title: taskData.title,
+      summary: taskData.summary,
+      dueDate: taskData.date,
+    })
+    this.isAddingTask=false;
+  }
+} 
