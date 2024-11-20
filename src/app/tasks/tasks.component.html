@@ -1,5 +1,8 @@
 @if (isAddingTask) {
-    <app-new-task (cancel)="onCancelAddTask()" (add)="onAddtask($event)" ></app-new-task>
+    <app-new-task [userId]="UserId" (cancel)="onCancelAddTask()"  ></app-new-task>
+    
+    <!--(add)="onAddtask($event)" omitimos este evento puesto que ya no existe-->
+
 }
 
 <section id="tasks">
@@ -13,7 +16,7 @@
     <ul>
         @for (tarea of selectedUserTask; track undefined) {
            <li>
-            <app-task [task]="tarea" (complete)="onCompleteTask($event)"></app-task>
+            <app-task [task]="tarea" ></app-task><!--(complete)="onCompleteTask($event)" presindimos de esta tarea porque se implemento desde desde task.component-->
         </li> 
         }
         <!-- 

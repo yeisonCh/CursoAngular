@@ -3,6 +3,8 @@ import { TaskComponent } from "./task/task.component";
 import { NewTaskComponent } from './new-task/new-task.component';
 import {type NewTaskData } from './task/task.model';
 import { Title } from '@angular/platform-browser';
+import { TasksService } from './tasks.services';
+//import { TasksService } from './tasks.services';
 
 @Component({
   selector: 'app-tasks',
@@ -16,7 +18,19 @@ export class TasksComponent {
   @Input({required: true}) name!: string; 
   //@Input() name?:string;
   isAddingTask = false;
+// instanciamos el servicio que hemos importado
+  //private tasksService = new TasksService();
+  /*se establece una propiedad para hacer uso del servicio 
+  private tasksService:TasksService;
+*/
+  //inyeccion de dependencias en angular para usar un servicio antes creado 
+  constructor(private tasksService: TasksService){
+  
+   // this.tasksService=tasksService; si usamos la creaciòn de una propiedad, 
+  }
 
+
+/*
   tasks = [
     {
       id: 't1',
@@ -50,25 +64,37 @@ export class TasksComponent {
       dueDate: '2024-07-20',
     },
   ];
-
+*/
   get selectedUserTask(){
-    return this.tasks.filter((task) => task.userId === this.UserId);
+    
+    //this.tasks.filter((task) => task.userId === this.UserId);
+    return this.tasksService.gatUserTasks(this.UserId);
+    
+    
+    
   
   }
 
+  /*
+  el siguiente metodo para completar la tarea se elinima tenieno en cuenta que se ha implmentado el el servicio tasks.services 
+  ahora debemos implementarlo como servicio. el cual se implementara en el componente tarea task que es donde se gestiona una trea
   onCompleteTask(id: string){
     this.tasks=this.tasks.filter((task)=>task.id!==id);
-    //console.log("haz hecho click al boton finalizar tarea numero: "+ id);
+    console.log("haz hecho click al boton finalizar tarea numero: "+ id);
   }
+*/
+
+
   onStarAddTask(){
     this.isAddingTask=true;
   }
+  
   onCancelAddTask(){
     this.isAddingTask=false;
   }
-
+  /*este evento lo cancelamos puesto que ya se translado al tasks.services
   onAddtask(taskData: NewTaskData){
-    this.tasks.push({
+  this.tasks.push({
       id: new Date().getTime.toString(),
       userId: this.UserId,
       title: taskData.title,
@@ -76,5 +102,5 @@ export class TasksComponent {
       dueDate: taskData.date,
     })
     this.isAddingTask=false;
-  }
+  }*/
 } 
