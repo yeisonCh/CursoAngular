@@ -1,12 +1,12 @@
 import { Component, EventEmitter, inject, Input, Output} from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import {type NewTaskData } from '../task/task.model';
+//import { FormsModule } from '@angular/forms';importaciòn de modulos para trabajar con los componentes autonomos o independientes  
+//import {type NewTaskData } from '../task/task.model';
 import { TasksService } from '../tasks.services';
 
 @Component({
   selector: 'app-new-task',
   standalone: true,
-  imports: [FormsModule],
+  //imports: [FormsModule],etamos importando modulos para utilizar caracteristicas de modulos dentro de este componente si lo requerimos
   templateUrl: './new-task.component.html',
   styleUrl: './new-task.component.less'
 })

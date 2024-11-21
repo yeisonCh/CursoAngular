@@ -8,10 +8,10 @@ import { NgFor,NgIf } from '@angular/common';// se usa para trabajar con for y e
 
 @Component({
   selector: 'app-root',
-  standalone: true,
+  //standalone: true, esta instucción para decir que este componente es independiente o autonomo 
   // se debe importar en imports ngForm, ngIf
   //imports: [RouterOutlet, HeaderComponent, UserComponent, TasksComponent, NgFor,NgIf],
-  imports: [RouterOutlet, HeaderComponent, UserComponent, TasksComponent],
+  //imports: [HeaderComponent, UserComponent, TasksComponent], importamos los componentes que estamos utilizando y que son idependientes o autonomos
   templateUrl: './app.component.html',
   styleUrl:'./app.component.less' 
 })
